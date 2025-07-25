@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Form</title>
+</head>
+<body>
+
+  <h2>Registration</h2>
+
+  <form id="form">
+    Name: <input type="text" id="name" required><br><br>
+    Email: <input type="email" id="email" required><br><br>
+    Phone: <input type="tel" id="phone" required><br><br>
+    Age: <input type="number" id="age" min="1" required><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="output" style="margin-top:20px;"></div>
+
+  <script>
+    document.getElementById('form').onsubmit = function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const age = document.getElementById('age').value;
+
+      document.getElementById('output').innerHTML = `
+        Name: ${name}<br>
+        Email: ${email}<br>
+        Phone: ${phone}<br>
+        Age: ${age}
+      `;
+    };
+  </script>
+
+</body>
+</html>
