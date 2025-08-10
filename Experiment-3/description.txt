@@ -1,0 +1,75 @@
+ADMIN DASHBOARD TEST CASES & FEATURES
+
+1. FIELD: Dark Mode Toggle
+Requirement:
+    Implement a theme switcher that changes the dashboard from light mode to dark mode when toggled.
+    Must work without JavaScript (pure HTML & CSS).
+    Uses a hidden checkbox input to store toggle state.
+VALID ACTIONS:
+    Checkbox checked → Dark Mode variables applied (input:checked ~ .container).
+    Checkbox unchecked → Default Light Mode variables applied.
+INVALID ACTIONS:
+    Directly clicking inside content area will not change theme unless toggle is used.
+
+2. COMPONENT: Layout
+Requirement:
+    Use CSS Grid for layout with the following structure:
+    Row 1: Header (spans both columns).
+    Row 2: Navigation sidebar (left) + Main content (right).
+    Row 3: Footer (spans both columns).
+    Must be responsive and maintain structure across light/dark modes.
+VALID LAYOUTS:
+    Light mode: Green & white theme.
+    Dark mode: Black & dark gray theme.
+INVALID LAYOUTS:
+    Any mode where header, nav, or footer overlap unintentionally.
+
+3. STYLING: Theme Variables
+Requirement:
+    Use CSS variables to store theme colors:
+    --header-bg-color
+    --nav-bg-color
+    --main-bg-color
+    --footer-bg-color
+    --main-color
+    Update variables when theme toggle changes.
+VALID VARIABLES:
+    Light mode:
+    Header/Footer: Green
+    Nav: Light green/gray
+    Main: White background, black text
+    Dark mode:
+    Header/Footer: Black
+    Nav: Dark gray
+    Main: Dark background, white text
+
+4. COMPONENTS: Styling Breakdown
+Header
+    Purpose: Displays page title and dark mode toggle.
+Properties & Effects:
+    Flexbox for space-between layout.
+    Color changes based on theme variables.
+    Padding for visual spacing.
+Navigation
+    Purpose: Provides sidebar links.
+Properties & Effects:
+    Vertical flex layout.
+    Background & text color adapt to theme.
+    Space between menu items for readability.
+
+Main Content
+Purpose: Displays admin dashboard content.
+Properties & Effects:
+    Background & text colors adapt to theme.
+    Padding for readability.
+Footer
+    Purpose: Displays copyright.
+Properties & Effects:
+    Centered text.
+    Matches header styling for consistency.
+
+LEARNING OUTCOMES:
+    How to create a theme switcher using only HTML & CSS.
+    How to use CSS variables for easy theming.
+    How to build a grid-based responsive layout.
+    How to design consistent UI components across multiple themes.

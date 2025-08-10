@@ -1,0 +1,62 @@
+:root{
+    --header-bg-color: rgb(26, 167, 26);
+    --nav-bg-color: rgb(207, 223, 207);
+    --main-bg-color: white;
+    --footer-bg-color: rgb(25, 148, 25);
+    --main-color: black;
+}
+input:checked ~ .container{
+    --header-bg-color: rgb(0, 0, 0);
+    --nav-bg-color: rgb(32, 34, 32);
+    --main-bg-color: rgb(17, 14, 14);
+    --footer-bg-color: rgb(0, 0, 0);
+    --main-color: rgb(255, 255, 255);
+    
+}
+
+header{
+    border: 2px solid black;
+    background-color: var(--header-bg-color);
+    color: white;
+    grid-column: 1 / span 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+nav{
+    border: 2px solid black;
+    background-color: var(--nav-bg-color);
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+main{
+    border: 2px solid black;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+    font-size: 20px;
+    padding-left: 12px;
+    background-color: var(--main-bg-color);
+}
+footer{
+    border: 2px solid black;
+    background-color: var(--footer-bg-color);
+    color: white;
+    grid-column: 1 / span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+
+}
+.container{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 150px auto;
+    grid-template-rows: 70px auto 60px;
+}
+#theme{
+    display: none;
+}
