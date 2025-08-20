@@ -1,0 +1,105 @@
+LIVE CHARACTER COUNTER
+FEATURES, TEST CASES & VALIDATIONS
+1. FIELD: Textarea Input
+Requirement:
+
+The user must be able to type text inside the textarea.
+
+The textarea should support multiple lines.
+
+A placeholder message should be visible before typing starts.
+
+VALID BEHAVIOR:
+
+Typing in the textarea should instantly update the character count.
+
+Placeholder disappears when typing begins.
+
+Entering spaces, newlines, and symbols also increase the character count.
+
+INVALID BEHAVIOR:
+
+Character count does not update when typing.
+
+Placeholder remains even after typing.
+
+Special characters or spaces are ignored.
+
+2. FIELD: Character Counter
+Requirement:
+
+A live counter should show the number of characters typed.
+
+Counter must update in real-time with every keystroke (add or delete).
+
+Each textarea has its own counter.
+
+VALID BEHAVIOR:
+
+Typing “Hello” displays Characters: 5.
+
+Deleting one character updates the count instantly.
+
+Separate counters work independently.
+
+INVALID BEHAVIOR:
+
+Counter updates only after refresh.
+
+One textarea updates both counters incorrectly.
+
+Counter shows wrong number compared to actual characters.
+
+CSS STYLING BREAKDOWN: A STRUCTURED OVERVIEW
+1. ELEMENT: body (Page Background)
+Purpose: Provides overall page style.
+Properties & Effects:
+
+background-color: default white.
+
+font-family: sans-serif; for clean readability.
+
+2. ELEMENT: .box (Container for Counter)
+Purpose: Groups textarea and counter together.
+Properties & Effects:
+
+border: 1px solid black; to highlight the box.
+
+margin: 15px; spacing between boxes.
+
+padding: 10px; inner spacing.
+
+width: 400px; fixed box size for uniformity.
+
+3. ELEMENT: textarea (Typing Area)
+Purpose: Allows user input.
+Properties & Effects:
+
+width: 100%; expands across container.
+
+height: 100px; multi-line typing.
+
+font-size: 14px; readable text.
+
+padding: 5px; spacing inside textarea.
+
+4. ELEMENT: .count (Character Counter Display)
+Purpose: Displays real-time character count.
+Properties & Effects:
+
+font-weight: bold; makes text stand out.
+
+margin-top: 5px; spacing from textarea.
+
+display: block; forces it to appear below textarea.
+
+LEARNING OUTCOMES
+Learned how to update HTML dynamically using JavaScript (innerText).
+
+Understood how event listeners (input) track user typing in real-time.
+
+Practiced separating HTML, CSS, and JavaScript into different files.
+
+Gained experience in validating UI behavior with test cases.
+
+Learned the importance of styling and structured documentation.
