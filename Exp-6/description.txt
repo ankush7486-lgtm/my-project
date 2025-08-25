@@ -1,0 +1,229 @@
+INTERACTIVE DRAWING TOOL
+FEATURES, TEST CASES & VALIDATIONS
+1. FIELD: Canvas (Drawing Area)
+
+Requirement:
+
+A <canvas> element where users can draw with mouse or touch.
+
+Canvas should fill the container and have a visible border.
+
+Drawing should follow the cursor/finger while pressed down and stop when released.
+
+VALID BEHAVIOR:
+
+Press–move–release draws a continuous line.
+
+Lifting the mouse/finger stops drawing immediately.
+
+Window resize keeps the canvas visible (content may clear if resized—acceptable if documented).
+
+INVALID BEHAVIOR:
+
+Lines appear with no press/drag.
+
+Drawing continues after mouseup/touchend.
+
+Canvas is hidden or overflows the container.
+
+2. FIELD: Brush Tool (Color & Size)
+
+Requirement:
+
+A color picker to change stroke color.
+
+A size slider or input (e.g., 1–50 px) to change brush thickness.
+
+Selected color/size must apply to new strokes instantly.
+
+VALID BEHAVIOR:
+
+Changing color draws the next line in the new color.
+
+Moving the size slider updates line thickness right away.
+
+Indicator shows current size (e.g., label “Size: 10px”).
+
+INVALID BEHAVIOR:
+
+Color picker does nothing.
+
+Slider changes do not affect line width.
+
+Size accepts non-numeric or out-of-range values without validation.
+
+3. FIELD: Eraser Tool
+
+Requirement:
+
+An “Eraser” button that removes drawn pixels where dragged.
+
+Switching back to “Brush” restores chosen color and size.
+
+VALID BEHAVIOR:
+
+While eraser is active, dragging reveals blank canvas behind strokes.
+
+Brush settings are remembered when returning to Brush tool.
+
+INVALID BEHAVIOR:
+
+Eraser draws white lines that don’t match the canvas background (leaves artifacts).
+
+Tool state doesn’t switch, both brush and eraser act at once.
+
+4. FIELD: Clear Canvas
+
+Requirement:
+
+A “Clear” button to wipe the entire canvas.
+
+Optional confirm prompt (recommended).
+
+VALID BEHAVIOR:
+
+Clicking “Clear” removes all drawings and resets to blank.
+
+If confirm is enabled, “Cancel” keeps the drawing.
+
+INVALID BEHAVIOR:
+
+Clear only partially wipes the canvas.
+
+Button is clickable but nothing happens.
+
+5. FIELD: Save/Download Image
+
+Requirement:
+
+A “Save” button that downloads the canvas as an image (PNG/JPEG).
+
+Filename should be friendly (e.g., drawing.png).
+
+VALID BEHAVIOR:
+
+Clicking “Save” triggers a download of the visible drawing.
+
+Saved image matches the canvas content and size.
+
+INVALID BEHAVIOR:
+
+Downloaded file is empty or corrupted.
+
+File type/extension doesn’t match the selected format.
+
+6. FIELD: Undo / Redo (Optional but Recommended)
+
+Requirement:
+
+Buttons for Undo and Redo using a simple history stack.
+
+VALID BEHAVIOR:
+
+After each stroke, Undo steps back one stroke; Redo restores it.
+
+Buttons disable when no further action is available.
+
+INVALID BEHAVIOR:
+
+Undo removes random parts or skips strokes.
+
+Redo creates duplicate strokes.
+
+7. FIELD: Input Methods & Accessibility
+
+Requirement:
+
+Support mouse and basic touch events (touchstart, touchmove, touchend).
+
+Toolbar controls reachable via keyboard (Tab/Enter/Space).
+
+Active tool has visible focus/active state.
+
+VALID BEHAVIOR:
+
+Touch drawing works like mouse drawing.
+
+Buttons receive focus rings and are operable with Enter/Space.
+
+INVALID BEHAVIOR:
+
+Touch input ignored.
+
+No focus styles; keyboard users can’t use tools.
+
+CSS STYLING BREAKDOWN: A STRUCTURED OVERVIEW
+
+ELEMENT: body (Page Background)
+Purpose: Base look and typography.
+Properties & Effects:
+
+background: #ffffff;
+
+font-family: sans-serif;
+
+margin: 0;
+
+ELEMENT: .app (Main Wrapper)
+Purpose: Centers the tool and sets max width.
+Properties & Effects:
+
+max-width: 900px; margin: 20px auto; padding: 10px;
+
+border: 1px solid #000;
+
+ELEMENT: .toolbar (Controls Row)
+Purpose: Holds buttons, color picker, and size slider.
+Properties & Effects:
+
+display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+
+padding: 10px; border-bottom: 1px solid #ddd;
+
+ELEMENT: .btn (Generic Button)
+Purpose: Reusable styles for tool actions.
+Properties & Effects:
+
+padding: 6px 12px; border: 1px solid #ccc; border-radius: 4px;
+
+cursor: pointer; background: #f7f7f7;
+
+.btn.active, .btn:focus { outline: 2px solid #4a90e2; }
+
+ELEMENT: .color-picker / .size-input
+Purpose: Change brush color and size.
+Properties & Effects:
+
+input[type="color"] { width: 36px; height: 32px; border: none; }
+
+input[type="range"] { width: 160px; }
+
+ELEMENT: .canvas-wrap (Canvas Container)
+Purpose: Provides a bordered area for the canvas.
+Properties & Effects:
+
+border: 1px solid #ddd; margin-top: 10px;
+
+position: relative;
+
+ELEMENT: canvas (Drawing Surface)
+Purpose: The actual drawing area.
+Properties & Effects:
+
+display: block; width: 100%; height: 500px; (CSS size)
+
+Note: Also set matching pixel size in JS (canvas.width/height) for sharp lines.
+
+LEARNING OUTCOMES
+
+How to capture mouse and touch events to draw on an HTML <canvas>.
+
+Managing tool state (brush vs eraser) and applying dynamic styles (color, size).
+
+Implementing Clear and Save using canvas.getContext('2d') and toDataURL().
+
+(Optional) Building an Undo/Redo stack by saving snapshots after each stroke.
+
+Applying accessible UI patterns: focus states, keyboard operability, clear labels.
+
+Understanding the difference between CSS canvas size and actual pixel size set in JavaScript.

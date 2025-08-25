@@ -1,0 +1,117 @@
+PRODUCT LIST WITH CATEGORY FILTER
+FEATURES, TEST CASES & VALIDATIONS
+1. FIELD: Dropdown Filter (Category Selection)
+
+Requirement:
+
+A dropdown should allow users to filter products based on category.
+
+Categories include All, Clothing, Electronics, and Books.
+
+Default selection should be All, showing every product.
+
+Must be accessible via keyboard (Tab, Arrow keys, Enter).
+
+VALID BEHAVIOR:
+
+Selecting Clothing shows only clothing items like T-Shirt and Jeans.
+
+Selecting Electronics shows only electronics like Headphones and Smartphone.
+
+Selecting All resets and shows all products.
+
+INVALID BEHAVIOR:
+
+Dropdown selection does nothing.
+
+Incorrect items appear when a category is selected.
+
+Dropdown cannot be navigated via keyboard.
+
+2. FIELD: Product List
+
+Requirement:
+
+Each product should be displayed as a list item with clear spacing.
+
+Each product must have a data-category attribute for filtering.
+
+List items should remain hidden or visible depending on the filter selection.
+
+VALID BEHAVIOR:
+
+All products are visible when All is selected.
+
+Items disappear immediately when switching categories if they do not match.
+
+Category matching is case-insensitive and instant.
+
+INVALID BEHAVIOR:
+
+Non-matching items still visible after selection.
+
+Empty list even when items exist.
+
+Incorrect or missing category attributes cause display issues.
+
+CSS STYLING BREAKDOWN: A STRUCTURED OVERVIEW
+
+ELEMENT: body (Page Background)
+Purpose: Provides base page styling.
+Properties & Effects:
+
+Background-color: default white.
+
+Font-family: sans-serif; for clarity and readability.
+
+ELEMENT: .container (Product Section)
+Purpose: Wraps the filter dropdown and product list.
+Properties & Effects:
+
+border: 1px solid black; clear boundaries.
+
+padding: 20px; internal spacing.
+
+width: 400px; fixed for consistent layout.
+
+margin: 20px auto; centers container.
+
+ELEMENT: select (Dropdown Menu)
+Purpose: Allows filtering options.
+Properties & Effects:
+
+padding: 5px; for usability.
+
+margin-bottom: 20px; spacing before list.
+
+ELEMENT: ul (Product List Container)
+Purpose: Holds product items.
+Properties & Effects:
+
+list-style-type: none; removes bullets.
+
+padding: 0; clean layout.
+
+ELEMENT: li (Product Items)
+Purpose: Displays each product clearly.
+Properties & Effects:
+
+border: 1px solid #ddd; visual separation.
+
+padding: 10px; comfortable spacing.
+
+margin-bottom: 5px; clear gap between items.
+
+border-radius: 5px; subtle rounded corners.
+
+LEARNING OUTCOMES
+
+Learned how to use JavaScript event listeners to filter lists dynamically.
+
+Understood the use of data attributes for category-based filtering.
+
+Practiced DOM manipulation using style.display for show/hide.
+
+Improved knowledge of HTML structure, CSS styling, and JavaScript logic separation.
+
+Learned to validate UI components with positive and negative test cases.
