@@ -1,0 +1,50 @@
+ProductCard Component Using Props 
+->COMPONENT: ProductCard
+    ->Purpose:
+        ->A reusable React component that displays product details (name, price, status).
+    ->Props:
+        ->name → Product name (string).
+        ->price → Product price (number/decimal).
+        ->status → Product availability (string: "In Stock" / "Out of Stock").
+    ->Effect:
+        ->Enables rendering of multiple product cards dynamically by just passing different props.
+
+->FILE: App.jsx
+    ->Purpose:
+        ->Main component that imports and uses the ProductCard multiple times with different data.
+    ->Effect:
+        ->Demonstrates how the same component can render different products (Mouse, Keyboard, Monitor) without changing the component code.
+
+->FILE: ProductCard.jsx
+    ->Purpose:
+        ->Holds the reusable ProductCard component definition.
+    ->Effect:
+        ->Displays product information (name, price, status) inside a styled card box.
+
+->FILE: App.css
+    ->Purpose:
+        ->Provides styling for the application layout and the product cards.
+    ->Main Elements:
+        .app-container: Adds border, padding, and layout for the full app.
+        .title: Styles the "Products List" heading.
+        .card-wrapper: Aligns product cards horizontally with spacing.
+        .product-card: Styles individual product boxes (border, shadow, rounded corners).
+        .product-name: Highlights the product name in bold.
+
+->FILE: main.jsx
+    ->Purpose:
+        ->Entry point of the React application.
+    ->Effect:
+        ->Renders the App component inside the root DOM element using React’s createRoot.
+
+->FILE: index.css
+    ->Purpose:
+        ->Global styling for the whole application.
+    ->Effect:
+        ->Sets font, background color, and default page layout.
+
+->LEARNING OUTCOMES
+    ->Learned how to create a reusable React component using props.
+    ->Understood how to pass dynamic data into a component.
+    ->Applied modular CSS for both global and component-specific styling.
+    ->Learned how to structure a basic React app with App.jsx, ProductCard.jsx, main.jsx, and global CSS.
