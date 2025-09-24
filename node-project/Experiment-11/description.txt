@@ -1,0 +1,46 @@
+1. Importing modules:
+require('express') ->imports the Express framework.
+const app = express(); ->creates an Express application.
+const port = 3000; -> initializes the port number to 3000 where our server will run.
+Sets up the basic Express Application
+
+2.Middleware
+express.json() is a Middleware which allows the server to read the JSOn data sent.
+Any types of POST or PUT request is automatically parsed using this middleware.
+
+3. Array of card objects:
+Creates an array of card objects which is stores in memory.
+Each card has id, suit(Hearts, Spades, etc.) and value(Ace, King, Jack, queen, etc.).
+This creates a sample data on which our API works.
+
+4. GET task:
+Return all the cards stored in memory.
+res.json(cards)->Sends the card array as JSON response.
+We can find any card by its mentioned id and if it is not found an error message will be shown.
+
+5. POST task:
+Adds new card to the cards array.
+creates new object with unique ID.
+Checks if both the fields suit and value are provided or not.
+
+6.DELETE task:
+Deletes existing cards by its ID.
+Finds indec of the card in the cards array.
+If found-> removes the card and if not-> sends error message.
+
+7. Start server:
+At the end we need to start our Express surver on the specified port. 
+It also logs a message on console showing the URl where the server is running.
+
+8. Postman Tool:
+Postman is a tool used to test APIs. It allows user send requests to the server and see the responses without writing a separate frontend.
+It allows various tasks such as GET, POST, PUT, DELETE, etc.
+Helps in cheking whether the API works correctly or not.
+
+9. LEARNING OUTCOMES
+Learnt how to create a REST API using node.js.
+Understood how to use GET, POST, and DELETE routes for data operations.
+Learnt how to handle JSON input with express.json() middleware.
+Learnt how to send proper responses and handle errors (like 404 or 400).
+Practiced starting a server on specified ports.
+Practiced starting a server and testing API endpoints using Postman.

@@ -1,0 +1,42 @@
+1. Importing modules: 
+require('express') ->imports the Express framework. 
+const app = express(); ->creates an Express application. 
+const port = 3000; -> initializes the port number to 3000 where our server will run. 
+Sets up the basic Express Application.
+
+2.Middleware:
+express.json() is a Middleware which allows the server to read the JSOn data sent. 
+Any types of POST or PUT request is automatically parsed using this middleware.
+
+3. Seats object:
+Creates a seats object initially storing 6 seats data with their lock duration.
+lock duration is set to 1 min.
+That means when we lock a seat it will get confirmed in 1 min.
+lockExpiry tells us the timestamp until when the seat is locked
+
+4. GET task:
+Returns the status of all the existing seats.
+Response is in JSON with seat number and their currect status(whether available, locked or booked).
+
+5. POST task(Locking a seat):
+This task locks a seat temporarily and confirms within 1 minute.
+Checks if the seat is available or not, if not avaiable shows error message.
+Uses setTimeout to automatically release the seat if not confirmed within 1 minute.
+
+6. Confirm a Locked Seat:
+confirms booking of a locked seat.
+Checks if seat exists sends error 404 if not exist.
+Checks if seat is locked and lock has not expired -> changes status to "booked".
+If seat is not locked it sends 400 error.
+Responds with a success message if booking is successful.
+
+7. Start server:
+At the end we need to start our Express surver on the specified port. 
+It also logs a message on console showing the URl where the server is running.
+
+8. Learning Outcomes:
+Learnt how to create a REST API using Node.js and Express.
+Understood how to use GET and POST routes for seat operations.
+Learnt how to handle JSON input with middleware.
+Learnt how to send proper responses and handle errors (Ex.404).
+Practiced starting a server and testing API endpoints using Postman.

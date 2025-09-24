@@ -1,0 +1,46 @@
+1. Some termonologies
+Node.js-> Node.js is a free, open-source, cross-platform which allows us run JavaScript outside the web browser.
+    Helps us create servers, web apps, command line tools and scripts.
+CLI-> Command Line Interface(terminal)
+
+2. Importing modules:
+Firstly, a readline module is imported which takes input from the user and also shows output in the console.
+An interface named createInterface is created to connect the program with the console.
+input: process.stdin means the program will take input from the keyboard.
+output: process.stdout means the program will show output on the screen (console).
+
+3. Creating array of objects named employees which holds details of the employees:
+Each object stores details like name(employee name) and id(employee id).
+We have pre-initialized some entries of employees such as name:Nutan, id:E101.
+
+4. Function menu():
+This function shows a menu to the user with four options: 
+    1-Add employee
+    2-List employee
+    3-Remove employee
+    4-exit
+Then asks the user to enter a choice. If users choice is 1, program calls addEmployee() function.
+If users choice is 2, program calls listEmployee() function.
+If users choice is 3, program calls removeEmployee() function.
+If users choice is 4, program calls rl.close() function which stops the execution.
+
+5. addEmployee()
+Asks the user to enter name and ID of the employee.
+Then it creates a new object with details {name, id} and add it to employee array.
+At the end of the function it shows a message that Employee is added successfully.
+
+6.listEmployees()
+Prints the details of all the existing and newly added employees.
+After listing returns to main menu.
+
+7.removeEmployee()
+Asks the user for the employee id which is need to be removed.
+Uses the filter method to keep all employees whose ID does not match the entered ID.
+Shows a message that the employee with ID <id> is removed.
+And then returnss to main menu.
+
+LEARNING OUTCOMES
+How to build a simple Employee Management System using Node.js.
+How to use the readline module for user input.
+How to implement Add, List, and Remove operations in an array.
+How to interact with the client(in this case CLI).
