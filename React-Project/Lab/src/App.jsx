@@ -3,8 +3,8 @@ import "./App.css";
 
 function App() {
   const [employees, setEmployees] = useState([
-    { id: 1, name: "Ankush", designation: "Developer" },
-    { id: 2, name: "Ankita", designation: "Designer" },
+    { id: 1, name: "Mahivardhan", designation: "Developer" },
+    { id: 2, name: "Tanisq", designation: "Designer" },
     { id: 3, name: "Rahul", designation: "Manager" },
   ]);
 
