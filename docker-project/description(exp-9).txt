@@ -1,0 +1,142 @@
+PROJECT: Automated CI/CD Pipeline for a Dockerized React App
+
+1) Technologies Used:
+    a) React.js: As the frontend library for the web application.
+    b) Node.js & npm: As the runtime environment for testing (npm ci) and building (npm run build) the React app.
+    c) Docker: For containerizing the application using an efficient multi-stage build.
+    d) Nginx: As the lightweight, high-performance web server to serve the static React files in the final container.
+    e) GitHub Actions: As the CI/CD platform to automate the entire build, test, and deployment workflow
+    f) Docker Hub: As the container registry to store and distribute the final production-ready Docker image.
+    g) YAML: For defining the GitHub Actions workflow steps in the build.yml file.
+
+2) Project Overview:
+    a) This project is a complete CI/CD (Continuous Integration / Continuous Deployment) pipeline for a React application, automated using GitHub Actions and Docker.
+    b) It demonstrates how to automate the process from a code push to a deployable cloud artifact. When code is pushed to the react-project/Experiment-7/ path, the pipeline automatically installs dependencies, builds the React app, packages it into a production-ready Docker image, and pushes that image to Docker Hub.
+    c) The primary goals are to practice modern DevOps principles, implement automated workflows, create optimized container images using multi-stage builds, and manage credentials securely using GitHub Secrets.
+
+3) Project File Structure: The project structure consists of a React application nested within a larger repository, alongside the necessary Docker and GitHub Actions configuration files.
+
+        my-project/
+        ├── .github/
+        │   └── workflows/
+        │       └── build.yml             # Defines the CI/CD pipeline steps
+        ├── docker-project/
+        │   ├── experiment-9.1
+        │   └── screenshots
+        ├── react-project/
+        │   └── Experiment-7/
+        │       ├── Dockerfile            # Defines the multi-stage Docker build
+        │       ├── public/               # React public assets
+        │       ├── src/                  # React source code
+        │       ├── package.json          # Project dependencies
+        │       └── ... (other React files)
+        └── ... (other projects)
+
+        #Note: I have integrated experiment 9.2 inside react-project/Experiment-7
+
+4) Structure(CI/CD Workflow): 
+    Application Loop & In-Memory Data:
+     The application's build and deployment are managed by the GitHub Actions workflow defined in .github/workflows/build.yml. This workflow is triggered on pushes to the specific Experiment-7 project path.
+    
+     SNIPPETS:
+
+    i) i) Multi-Stage Dockerfile (Dockerfile):
+     This file is the blueprint for the production image. It uses two stages to create a final image that is small, secure, and fast, separating build-time dependencies from runtime.
+     
+      SNIPPET (react-project/Experiment-7/Dockerfile):
+        # ---- Stage 1: Build the React app ----
+        FROM node:20 AS build
+        # Use a specific Node image for the build environment
+
+        WORKDIR /app
+        COPY package*.json ./
+
+        # Securely install exact dependencies
+        RUN npm ci --silent
+
+        COPY . .
+        # Build the static React app
+        RUN npm run build
+
+        # ---- Stage 2: Serve with nginx (production) ----
+        FROM nginx:1.25-alpine
+        # Use a lightweight Nginx image for the final container
+
+        # Copy only the built assets from the 'build' stage
+        COPY --from=build /app/dist /usr/share/nginx/html
+
+        EXPOSE 80
+        CMD ["nginx", "-g", "daemon off;"]
+
+   ii) Workflow Triggers and Defaults (build.yml):
+     This section defines when the workflow should run and where. It's configured to only run for changes inside the Experiment-7 folder and sets the default working-directory for all commands, which is critical for a monorepo structure.
+      
+    SNIPPET (.github/workflows/build.yml):   
+      on:
+        push:
+            branches: [ main ]
+            paths:
+            - 'react-project/Experiment-7/**'
+        workflow_dispatch: # Allows manual run
+
+        jobs:
+        build:
+            runs-on: ubuntu-latest
+            defaults:
+            run:
+                # All commands will run inside this specific folder
+                working-directory: react-project/Experiment-7
+
+
+   iii) Automated Build & Test (build.yml):
+     This step checks out the code, sets up the Node.js environment, and runs the build. Using npm ci ensures the build is reproducible and matches the package-lock.json file.
+             
+      SNIPPET (.github/workflows/build.yml):
+        steps:
+        - name: Checkout Repository
+        uses: actions/checkout@v4
+
+        - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+            node-version: '20'
+
+        - name: Install dependencies and build
+        run: |
+            npm ci
+            npm run build
+
+    iv) Docker Build & Push to Registry (build.yml):
+     This is the "Continuous Deployment" part. The workflow securely logs into Docker Hub using credentials stored in GitHub Secrets. It then builds the Dockerfile, tags the new image, and pushes it to the Docker Hub registry, making it available for deployment.
+            
+      SNIPPET (.github/workflows/build.yml):      
+        - name: Login to Docker Hub
+        if: github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+        - name: Push Image to Docker Hub
+        if: github.ref == 'refs/heads/main'
+        run: |
+            docker tag react-experiment-7 ${{ secrets.DOCKERHUB_USERNAME }}/react-experiment-7:latest
+            docker push ${{ secrets.DOCKERHUB_USERNAME }}/react-experiment-7:latest
+
+5) Learning Outcomes:
+    a) Mastered the setup and configuration of a complete CI/CD pipeline using GitHub Actions.
+    b) Gained practical experience with Docker, including writing efficient, secure multi-stage Dockerfiles.
+    c) Understood how to automate testing, building, and containerization for a frontend application.
+    d) Implemented secure authentication in a workflow using GitHub Secrets to protect sensitive tokens.
+    e) Learned to manage workflows in a monorepo structure using paths and working-directory.
+    f) Successfully published production-ready container images to a public registry (Docker Hub).
+
+6) Key Concepts:
+    a) CI/CD (Continuous Integration/Continuous Deployment)
+    b) GitHub Actions & Workflows
+    c) Docker & Containerization
+    d) Multi-Stage Docker Builds
+    e) Docker Hub (Container Registry)
+    f) YAML Configuration
+    g) DevOps Automation
+    h) GitHub Secrets Management
